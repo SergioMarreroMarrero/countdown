@@ -1,0 +1,35 @@
+# 🔹 Entorno Virtual (No queremos subirlo)
+venv/
+*.pyc
+*.pyo
+__pycache__/
+
+# 🔹 Configuración de Django (Bases de datos y configuraciones locales)
+db.sqlite3
+db.sqlite3-journal
+.env
+*.log
+
+# 🔹 Archivos de migraciones de Django (opcional, si quieres generarlas en el servidor)
+*/migrations/*.py
+*/migrations/*.pyc
+
+# 🔹 Archivos Estáticos y de Cache
+staticfiles/
+media/
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp3
+*.mp4
+
+# 🔹 Configuración de IDEs (PyCharm, VSCode, etc.)
+.vscode/
+.idea/
+*.sublime-workspace
+
+# 🔹 Archivos del sistema operativo (macOS y Windows)
+.DS_Store
+Thumbs.db

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Back, Brother!</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        img {
+    width: 80%; /* Hace que ocupe el 80% del ancho de la pantalla */
+    max-width: 600px; /* No permitirá que sea más grande de 600px */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados (opcional) */
+    margin-top: 20px;
+}
+        h1 { color: #0a0a0a; }
+        .countdown {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0a0a0a; /* Color llamativo */
+            background-color: #f8f9fa; /* Fondo sutil */
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .center-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra la imagen y el contador */
+            justify-content: center;
+        }
+
+    </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Convert Django variables to JavaScript date
+        let arrivalDate = new Date(
+            {{ arrival_date.year }},
+            {{ arrival_date.month }} - 1,
+            {{ arrival_date.day }},
+            {{ arrival_date.hour }},
+            {{ arrival_date.minute }}
+        );
+
+        console.log("Arrival Date:", arrivalDate);  // Debugging
+
+        function updateCountdown() {
+            let now = new Date();
+            let difference = arrivalDate - now;
+
+            if (difference <= 0) {
+                document.getElementById("countdown").innerHTML = "🎉 Jose ya está aquí, con su copa su copa en la mano...! 🎵 🎶🎉";
+                document.getElementById("countdown").style.color = "#28a745"; // Cambia el color a verde
+                document.getElementById("countdown").style.fontSize = "32px"; // Hace el texto más grande
+                return;
+            }
+
+            let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                `Time left: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds.`;
+
+            setTimeout(updateCountdown, 1000);  // Update every second
+        }
+
+        updateCountdown();  // Start the countdown
+    });
+</script>
+
+</head>
+<body onload="updateCountdown()">
+    <div class="center-container">
+    <h1>Welcome back, Bro! 🎉</h1>
+    {% load static %}
+    <img src="{% static 'home/las-palmas-de-gran-canaria.jpg' %}" alt="Gran Canaria">
+    <p class="countdown" id="countdown">Loading...</p>
+        <div class="center-container">
+</body>
+</html>
