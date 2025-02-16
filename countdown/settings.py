@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-zvfi_=!a#%&*h$m)16vxtjykoqy$vdz=m2iz$abu$mhe78)7ww
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "countdown-production-7c5c.up.railway.app",  # Agrega la URL de Railway
+    "localhost",
+    "127.0.0.1"
+]
 
 
 # Application definition
