@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zvfi_=!a#%&*h$m)16vxtjykoqy$vdz=m2iz$abu$mhe78)7ww
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "countdown-production-7c5c.up.railway.app",  # Agrega la URL de Railway
+    os.getenv("RAILWAY_PUBLIC_DOMAIN", "countdown-production-7c5c.up.railway.app"),  # Agrega la URL de Railway
     "localhost",
     "127.0.0.1"
 ]
@@ -125,6 +125,10 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Para producción en Railway:
+if os.getenv("RAILWAY_ENVIRONMENT"):
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
