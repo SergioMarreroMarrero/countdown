@@ -1,0 +1,5 @@
+Django
+gunicorn
+dj-database-url
+django-environ
+psycopg2-binary
